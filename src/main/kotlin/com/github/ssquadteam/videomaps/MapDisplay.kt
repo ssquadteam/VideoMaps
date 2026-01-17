@@ -17,6 +17,10 @@ class MapDisplay(
     val totalPixels: Int = pixelWidth * pixelHeight
     private val viewers = mutableSetOf<Player>()
 
+    // Delta compression: track previous chunk data to only send changes
+    private val previousChunks = Array(widthChunks * heightChunks) { IntArray(0) }
+    var deltaCompressionEnabled = true
+
     companion object {
         const val CHUNK_SIZE = 32
         const val IMAGE_SCALE = 3
@@ -66,7 +70,15 @@ class MapDisplay(
 
         for (cz in 0 until heightChunks) {
             for (cx in 0 until widthChunks) {
+                val chunkIndex = cz * widthChunks + cx
                 val chunkPixels = extractChunkPixelsScaled(framePixels, cx, cz)
+
+                if (deltaCompressionEnabled && chunkPixels.contentEquals(previousChunks[chunkIndex])) {
+                    continue
+                }
+
+                previousChunks[chunkIndex] = chunkPixels.clone()
+
                 val image = MapImage(IMAGE_SIZE, IMAGE_SIZE, chunkPixels)
                 chunks.add(MapChunk(startChunkX + cx, startChunkZ + cz, image))
             }
