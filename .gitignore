@@ -4,6 +4,7 @@
 bin
 .idea
 .kotlin
+libs
 
 # Ignore Gradle GUI config
 gradle-app.setting
