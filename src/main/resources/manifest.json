@@ -1,0 +1,11 @@
+{
+    "Group": "SSquadTeam",
+    "Name": "VideoMaps",
+    "Main": "com.github.ssquadteam.videomaps.VideoMapsPlugin",
+    "Version": "1.0.0",
+    "ServerVersion": "*",
+    "Description": "Play videos and animations on the Hytale world map",
+    "Dependencies": {
+        "SSquadTeam:TaleLib": "*"
+    }
+}
