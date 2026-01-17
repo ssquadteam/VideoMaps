@@ -6,12 +6,13 @@ group = "com.github.ssquadteam"
 version = "1.0.0"
 
 repositories {
+    maven { url = uri("https://jitpack.io") }
     mavenCentral()
 }
 
 dependencies {
     compileOnly(files("libs/HytaleServer.jar"))
-    compileOnly("com.github.ssquadteam:TaleLib")
+    compileOnly("com.github.ssquadteam:TaleLib:main-SNAPSHOT")
 }
 
 kotlin {

@@ -6,5 +6,3 @@ pluginManagement {
 }
 
 rootProject.name = "VideoMaps"
-
-includeBuild("../TaleLib")
